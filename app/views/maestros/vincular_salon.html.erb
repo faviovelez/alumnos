@@ -1,0 +1,18 @@
+<h1>El maestro <%= @maestro_actual.nombre %> </h1>
+<p>Listado de Salones ya vinculados</p>
+<ul>
+  <% @maestro_actual.each do |data| %>
+    <li> <% data.salons %> </li>
+  <% end %>
+</ul>
+
+<p>Vinculaciones disponibles</p>
+
+ <% form_for (@maestros, url: vincular_con_salon_post_path, method: 'post') do |f| %>
+  <% selected_salons.each do |salons| %>
+    <% f.select_tag 'selected.id' <option>salon.nombre</option> %>
+    <% end %>
+
+    <button type="submit" class="btn btn-default">Enviar</button>
+    <button type="submit" class="btn btn-default">Cancelar</button>
+ <% end %>

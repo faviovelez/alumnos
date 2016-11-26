@@ -1,6 +1,13 @@
 class MaestrosController < ApplicationController
   before_action :set_maestro, only: [:show, :edit, :update, :destroy]
 
+  def vincular_salon
+    @maestro_actual = Maestro.find(params[:maestro_id])
+  end
+
+  def vincular_salon_post
+  end
+
   # GET /maestros
   # GET /maestros.json
   def index
