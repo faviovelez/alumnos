@@ -4,7 +4,7 @@
 <h1>El maestro <%= @maestro.nombre %> </h1>
 <p>Listado de Salones ya vinculados</p>
 <ul>
-  <%= @maestro.salons.each do |salon| %>
+  <% @maestro.salons.each do |salon| %>
     <li> <%= salon.nombre %>
       <td> <%= link_to 'Eliminar', quitar_salon_path(@maestro.id, salon.id), method: :delete, data: { confirm: 'Seguro que desea borrarlo?' } %></td>
   </li>
@@ -13,7 +13,7 @@
 
 <p>Vinculaciones disponibles</p>
 
- <% form_for(@maestro, url: maestros_vincular_con_salon_post_path, method: 'post') do |f| %>
+ <%= form_for(@maestro, url: maestros_vincular_con_salon_post_path, method: 'post') do |f| %>
   <%= hidden_field_tag 'maestro', @maestro.id %>
 
   <%= select_tag 'salon', unassigned_salons.html_safe %>

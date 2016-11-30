@@ -16,10 +16,10 @@
   <tbody>
     <% @maestros.each do |maestro| %>
       <tr>
-        <td><%= maestro.nombre %></td>
-        <td><%= maestro.edad %></td>
-        <td><%= maestro.direccion %></td>
-        <td><%= link_to 'Show', maestro %></td>
+        <td class="blue"><%= maestro.nombre %></td>
+        <td class="blue"><%= maestro.edad %></td>
+        <td class="gray"><%= maestro.direccion %></td>
+        <td class="gray"><%= link_to 'Show', maestro %></td>
         <td><%= link_to 'Edit', edit_maestro_path(maestro) %></td>
         <td><%= link_to 'See classes', vincular_con_salon_path(maestro.id) %></td>
         <td><%= link_to 'Destroy', maestro, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -5,11 +5,16 @@ module MaestrosHelper
   end
 
   def unassigned_salons
-    @salons_options = ''
+    salons_options = ''
     available_salons.each do |salons|
-      @salons_options << "<option value='#{salons.id}'>#{salons.nombre}</option>"
+      salons_options << "<option value='#{salons.id}'>#{salons.nombre}</option>"
     end
-    @salons_options
+    salons_options
+  end
+
+  def style_salon
+    style = ''
+
   end
 
 end
