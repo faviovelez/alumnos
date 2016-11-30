@@ -2,12 +2,22 @@ class MaestrosController < ApplicationController
   before_action :set_maestro, only: [:show, :edit, :update, :destroy]
 
   def vincular_salon
-    @maestro_actual = Maestro.find(params[:maestro_id])
+    @maestro = Maestro.find(params[:maestro_id])
   end
 
-  def vincular_salon_post
+  def vincular_con_salon_post
+    @maestro = Maestro.find(params[:maestro_id])
+    @salon = Salon.find(params[:salon])
+    @maestro.salons << @salon
+    redirect_to vincular_con_salon_path(@maestro.id), alert: "Se asignó el #{@salon.nombre} al maestro #{@maestro.nombre}."
   end
 
+  def quitar_salon
+    @maestro = Maestro.find(params[:maestro])
+    @salon = Salon.find(params[:salon])
+    @maestro.salons.delete(@salon)
+    redirect_to vincular_con_salon_path(@maestro.id), alert: "Se elimino el vinculo #{@salon.nombre} con el maestro #{@maestro.nombre}"
+  end
   # GET /maestros
   # GET /maestros.json
   def index

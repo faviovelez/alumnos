@@ -1,18 +1,22 @@
-<h1>El maestro <%= @maestro_actual.nombre %> </h1>
+<div>
+  <%= flash[:alert] %>
+</div>
+<h1>El maestro <%= @maestro.nombre %> </h1>
 <p>Listado de Salones ya vinculados</p>
 <ul>
-  <% @maestro_actual.each do |data| %>
-    <li> <% data.salons %> </li>
+  <%= @maestro.salons.each do |salon| %>
+    <li> <%= salon.nombre %>
+      <td> <%= link_to 'Eliminar', quitar_salon_path(@maestro.id, salon.id), method: :delete, data: { confirm: 'Seguro que desea borrarlo?' } %></td>
+  </li>
   <% end %>
 </ul>
 
 <p>Vinculaciones disponibles</p>
 
- <% form_for (@maestros, url: vincular_con_salon_post_path, method: 'post') do |f| %>
-  <% selected_salons.each do |salons| %>
-    <% f.select_tag 'selected.id' <option>salon.nombre</option> %>
-    <% end %>
+ <% form_for(@maestro, url: maestros_vincular_con_salon_post_path, method: 'post') do |f| %>
+  <%= hidden_field_tag 'maestro', @maestro.id %>
 
-    <button type="submit" class="btn btn-default">Enviar</button>
-    <button type="submit" class="btn btn-default">Cancelar</button>
+  <%= select_tag 'salon', unassigned_salons.html_safe %>
+  <%= f.submit 'Asignar salon' %>
+  <%= f.submit 'Cancelar' %>
  <% end %>

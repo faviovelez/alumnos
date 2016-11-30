@@ -1,19 +1,15 @@
 module MaestrosHelper
 
-  def selected_salons
-    Salon.all - @maestro_actual.salons
+  def available_salons
+    Salon.all - @maestro.salons
   end
 
-  def salon_id
-    selected_salons.each do |salons|
-      @cad << salons.id
+  def unassigned_salons
+    @salons_options = ''
+    available_salons.each do |salons|
+      @salons_options << "<option value='#{salons.id}'>#{salons.nombre}</option>"
+    end
+    @salons_options
   end
-
-  def salon_name
-
-
-  <% selected_salons.each do |salons| %>
-    <% f.select_tag 'salons.id' <option> salons.nombre </option> %>
-    <% end %>
 
 end
